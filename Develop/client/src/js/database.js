@@ -17,8 +17,8 @@ export const putDb = async (content) => {
   const dataJate = await openDB('jate',1);
   const rw = dataJate.transaction('jate','readwrite');
   const store = rw.objectStore('jate');
-  const request = await store.put({id:1 ,value:content});
-  const result = await request;
+  const req = await store.put({id:1,value:content});
+  const result = await req;
   console.log('data saved to the database',result)
 };
 
@@ -28,8 +28,10 @@ export const getDb = async () => {
   const dataJate = await openDB('jate',1);
   const rw = dataJate.transaction('jate','readwrite');
   const store = rw.objectStore('jate');
-  const result = await store.getALl();
+  const req = store.get(1);
+  const result = await req;
   console.log('data saved to the database',result)
+  return result?.value;
 };
 
 initdb();
