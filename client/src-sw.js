@@ -23,6 +23,6 @@ warmStrategyCache({
   urls: ['/index.html', '/'],
   strategy: pageCache,
 });
-
+  // Here we define the callback function that will filter the requests we want to cache (in this case, JS and CSS files)
 registerRoute(({ request }) => request.mode === 'navigate'||['style','script','worker'].includes(request.destination),pageCache);
 

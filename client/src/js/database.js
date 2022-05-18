@@ -14,11 +14,11 @@ const initdb = async () =>
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
-  const dataJate = await openDB('jate',1);
-  const rw = dataJate.transaction('jate','readwrite');
-  const store = rw.objectStore('jate');
-  const req = await store.put({id:1,value:content});
-  const result = await req;
+  const dataJate = await openDB('jate',1);//making a connection to database and version
+  const rw = dataJate.transaction('jate','readwrite');//new transaction specifying database and privledges
+  const store = rw.objectStore('jate');//storing desired object
+  const req = await store.put({id:1,value:content});//put data in database
+  const result = await req;//confirmation of request
   console.log('data saved to the database',result)
 };
 
@@ -28,10 +28,10 @@ export const getDb = async () => {
   const dataJate = await openDB('jate',1);
   const rw = dataJate.transaction('jate','readwrite');
   const store = rw.objectStore('jate');
-  const req = store.get(1);
+  const req = store.get(1);//get our data 
   const result = await req;
   console.log('data saved to the database',result)
-  return result?.value;
+  return result?.value;//confirming request
 };
 
-initdb();
+initdb();//starting the database
